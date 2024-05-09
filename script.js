@@ -10,6 +10,8 @@ const resetButton = document.getElementById('reset');
 let totalSeconds = 1500;
 let timerInterval;
 let paused = false;
+let selectedTab = 'pomodoro';
+let remainingTime;
 
 function updateTimer() {
   const minutes = Math.floor(totalSeconds / 60);
@@ -19,9 +21,18 @@ function updateTimer() {
   secondsDisplay.textContent = seconds < 10 ? '0' + seconds : seconds;
 }
 
+function updateStartButtonLabel(resume = false) {
+  startButton.textContent = resume ? 'Resume' : 'Start';
+}
+
 function startTimer(duration) {
   totalSeconds = duration * 60;
+  if (remainingTime) {
+    totalSeconds = remainingTime;
+    remainingTime = null;
+  }
   updateTimer();
+  updateStartButtonLabel(true);
 
   timerInterval = setInterval(() => {
     if (totalSeconds > 0 && !paused) {
@@ -32,57 +43,84 @@ function startTimer(duration) {
     } else {
       clearInterval(timerInterval);
       alert('Time is up!');
+      updateStartButtonLabel();
     }
   }, 1000);
 }
 
+function pauseTimer() {
+  paused = true;
+  updateStartButtonLabel(true);
+  startButton.disabled = false;
+  pauseButton.disabled = true;
+  remainingTime = totalSeconds;
+}
+
 function activateTab(tab) {
-  pomodoroTab.classList.remove('active');
-  shortBreakTab.classList.remove('active');
-  longBreakTab.classList.remove('active');
-  tab.classList.add('active');
+  pomodoroTab.disabled = false;
+  shortBreakTab.disabled = false;
+  longBreakTab.disabled = false;
+  tab.disabled = true;
 }
 
 function resetTimer() {
   clearInterval(timerInterval);
+  updateStartButtonLabel(); 
   startButton.disabled = false;
   pauseButton.disabled = true;
-  totalSeconds = 1500;
+  paused = false;
+
+  if (selectedTab === 'pomodoro') {
+    totalSeconds = 1500;
+  } else if (selectedTab === 'shortBreak') {
+    totalSeconds = 300;
+  } else if (selectedTab === 'longBreak') {
+    totalSeconds = 900;
+  }
+  remainingTime = null;
   updateTimer();
 }
 
 pomodoroTab.addEventListener('click', () => {
+  selectedTab = 'pomodoro';
   activateTab(pomodoroTab);
   resetTimer();
 });
 
 shortBreakTab.addEventListener('click', () => {
+  selectedTab = 'shortBreak';
   activateTab(shortBreakTab);
   resetTimer();
 });
 
 longBreakTab.addEventListener('click', () => {
+  selectedTab = 'longBreak';
   activateTab(longBreakTab);
   resetTimer();
 });
 
-startButton.addEventListener('click', () => {
-  startButton.disabled = true;
-  pauseButton.disabled = false;
-  if (pomodoroTab.classList.contains('active')) {
-    startTimer(25);
-  } else if (shortBreakTab.classList.contains('active')) {
-    startTimer(5);
-  } else if (longBreakTab.classList.contains('active')) {
-    startTimer(15);
-  }
-});
+pauseButton.addEventListener('click', pauseTimer);
 
-pauseButton.addEventListener('click', () => {
-  paused = true;
-  pauseButton.textContent = 'Continue';
-  startButton.disabled = false;
-  pauseButton.disabled = true;
+startButton.addEventListener('click', () => {
+  if (startButton.textContent === 'Start') {
+    startButton.disabled = true;
+    pauseButton.disabled = false;
+    paused = false;
+    let duration;
+    if (selectedTab === 'pomodoro') {
+      duration = 25;
+    } else if (selectedTab === 'shortBreak') {
+      duration = 5;
+    } else if (selectedTab === 'longBreak') {
+      duration = 15;
+    }
+    startTimer(duration);
+  } else if (startButton.textContent === 'Resume') {
+    startButton.disabled = true;
+    pauseButton.disabled = false;
+    paused = false;
+    startTimer(totalSeconds / 60);
+  }
 });
 
 resetButton.addEventListener('click', resetTimer);
