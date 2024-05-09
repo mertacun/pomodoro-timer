@@ -34,6 +34,11 @@ h1 {
   color: #368a39;
 }
 
+#pomodoro-tab {
+  background-color: rgb(196, 97, 97);
+  border: 1px solid red;
+}
+
 .tabs button {
   margin: 0 10px;
   padding: 10px 20px;
@@ -96,6 +101,62 @@ font-size: 40px;
   cursor: pointer;
   padding: 10px;
 }
+footer p {
+  font-size: 12px;
+  font-weight: 600;
+  margin: 10px 0 8px 0;
+  color: #a5a5a5;
+  width: 100%;
+  text-align: center;
+}
+
+@media (max-width: 1025px) and (min-width: 477px)  {
+  
+  .container-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .container {
+    padding: 20px;
+    background-color: rgba(226, 226, 226, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+    width: 80%;
+    height: 90%;
+  }
+
+  h1 {
+    font-size: 50px;
+  }
+
+  .timer {
+    font-size: 170px;
+  }
+  
+  .tabs {
+    padding: 35px 0 ;
+  }
+
+  .tabs button {
+    font-size: 30px;
+    margin: 10px;
+  }
+  
+  .controls button {
+    font-size: 35px;
+    padding: 10px 15px;
+    margin: 15px;
+  }
+  
+  #music-icon {
+    font-size: 40px;
+  }
+
+}
 
 @media (max-width: 477px) {
   
@@ -103,17 +164,28 @@ font-size: 40px;
     font-size: 80px;
   }
   
+  .tabs {
+    padding-bottom: 35px;
+  }
+
   .tabs button {
     font-size: 16px;
+    margin: 10px;
   }
   
   .controls button {
     font-size: 16px;
     padding: 10px 15px;
+    margin: 15px;
   }
   
   #music-icon {
-    font-size: 30px;
+    font-size: 40px;
+  }
+  .container {
+    margin: 60px 10px;
+    padding: 20px;
   }
 
 }
+

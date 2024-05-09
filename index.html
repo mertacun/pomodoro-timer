@@ -1,33 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pomorhythm</title>
   <link rel="stylesheet" type="text/css" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <div class="container-wrap">
-    <div class="container">
-      <h1>Pomorhythm</h1>
-      <div class="timer">
-        <div id="minutes">25</div>
-        <div id="seconds">00</div>
+  <div class="whole-container">
+    <div class="container-wrap">
+      <div class="container">
+        <h1>Pomorhythm</h1>
+        <div class="timer">
+          <div id="minutes">25</div>
+          <div id="seconds">00</div>
+        </div>
+        <div class="tabs">
+          <button id="long-break-tab">Long Break</button>
+          <button id="short-break-tab">Short Break</button>
+          <button disabled id="pomodoro-tab">Pomodoro</button>
+        </div>
+        <div class="controls">
+          <button id="start">Start</button>
+          <button disabled id="pause">Pause</button>
+          <button id="reset">Reset</button>
+          <div id="music-control" class="music-control">
+              <i id="music-icon" class="fa-solid fa-circle-play"></i>
+          </div>
       </div>
-      <div class="tabs">
-        <button disabled id="pomodoro-tab">Pomodoro</button>
-        <button id="short-break-tab">Short Break</button>
-        <button id="long-break-tab">Long Break</button>
-      </div>
-      <div class="controls">
-        <button id="start">Start</button>
-        <button disabled id="pause">Pause</button>
-        <button id="reset">Reset</button>
-        <div id="music-control" class="music-control">
-          <i id="music-icon" class="fa-solid fa-circle-play"></i>
-      </div>
-    </div>
   </div>
+</div>  
   <audio id="audio" src="music.mp3" preload="auto" loop></audio>
+  <footer>
+  <p>&copy; 2024 Pomorhythm. All Rights Reserved</p>
+  <p>Made with <span style="color: #e25555;">❤</span> in Ottawa</p>
+</footer>
+</div>
   <script src="script.js"></script>
 </body>
 </html>
