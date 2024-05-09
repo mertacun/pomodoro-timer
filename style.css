@@ -1,9 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 
 body {
-  background-color: #f0f0f0;
   font-family: "Roboto", sans-serif;
-  background-image: url("/anton-maksimov.jpg");
+  background-image: url("anton-maksimov.jpg");
   background-size: cover;
 }
 
@@ -96,4 +95,25 @@ h1 {
 font-size: 40px;
   cursor: pointer;
   padding: 10px;
+}
+
+@media (max-width: 477px) {
+  
+  .timer {
+    font-size: 80px;
+  }
+  
+  .tabs button {
+    font-size: 16px;
+  }
+  
+  .controls button {
+    font-size: 16px;
+    padding: 10px 15px;
+  }
+  
+  #music-icon {
+    font-size: 30px;
+  }
+
 }
