@@ -131,13 +131,13 @@ const musicIcon = document.getElementById('music-icon');
 const audio = document.getElementById('audio');
 
 musicIcon.addEventListener('click', function() {
-  if (audio.paused) {
+  if (audio.paused || audio.ended) {
     audio.play();
-    musicIcon.classList.remove('fa-circle-play'); // Remove play icon class
-    musicIcon.classList.add('fa-circle-pause'); // Add pause icon class
+    musicIcon.classList.remove('fa-circle-play');
+    musicIcon.classList.add('fa-circle-pause');
   } else {
     audio.pause();
-    musicIcon.classList.remove('fa-circle-pause'); // Remove pause icon class
-    musicIcon.classList.add('fa-circle-play'); // Add play icon class
+    musicIcon.classList.remove('fa-circle-pause');
+    musicIcon.classList.add('fa-circle-play');
   }
 });
